@@ -1,6 +1,8 @@
 from fastapi import FastAPI
+from mangum import Mangum
 
 app = FastAPI()
+handler = Mangum(app)
 
 @app.get("/")
 def read_root():
@@ -23,4 +25,5 @@ def divide_numbers(number1: float, number2: float):
     if number2 == 0:
         return {"error": "Division by zero is not allowed."}
     return {"result": number1 / number2}
+
 
